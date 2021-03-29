@@ -10,8 +10,8 @@ if ("serviceWorker" in navigator) {
 async function send() {
   // Register Service Worker
   console.log("Registering service worker...");
-  const register = await navigator.serviceWorker.register("/worker.js", {
-    scope: "/"
+  const register = await navigator.serviceWorker.register("./worker.js", {
+    scope: "/client/"
   });
   console.log("Service Worker Registered...");
 
@@ -25,7 +25,7 @@ async function send() {
 
   // Send Push Notification
   console.log("Sending Push...");
-  await fetch("/subscribe", {
+  await fetch("http://localhost:5000/subscribe", {
     method: "POST",
     body: JSON.stringify(subscription),
     headers: {
